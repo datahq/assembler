@@ -8,9 +8,21 @@
         "owner": {"type": ["string", "null"]},
         "ownerid": {"type": "string"},
         "dataset": {"type": "string"},
-        "version": {"type": "integer"}
+        "version": {"type": "integer"},
+        "stats": {
+          "type": "object",
+          "properties": {
+            "rowcount": {
+              "type": "integer",
+              "index": "not_analyzed"
+            },
+            "bytes": {
+              "type": "integer",
+              "index": "not_analyzed"
+            }
+          }
+        }
       }
     }
   }
 }
-
