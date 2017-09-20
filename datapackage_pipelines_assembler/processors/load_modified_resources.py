@@ -1,4 +1,3 @@
-import json
 import os
 
 import copy
@@ -27,7 +26,7 @@ def modify_datapackage(dp, parameters, stats):
         views += view
 
         for resource_ in dp_.resources:
-            resource : Resource = resource_
+            resource: Resource = resource_
             descriptor = copy.deepcopy(resource.descriptor)
             source = resource.source
             if os.environ.get('ASSEMBLER_LOCAL'):

@@ -1,4 +1,3 @@
-from .base_processing_node import ProcessingArtifact
 from .basic_nodes import DerivedCSVProcessingNode, DerivedJSONProcessingNode, \
     NonTabularProcessingNode, DerivedPreviewProcessingNode
 

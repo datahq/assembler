@@ -57,6 +57,7 @@ class NonTabularProcessingNode(BaseProcessingNode):
         )
         yield output
 
+
 class DerivedPreviewProcessingNode(BaseProcessingNode):
     def __init__(self, available_artifacts, outputs):
         super(DerivedPreviewProcessingNode, self).__init__(available_artifacts, outputs)
@@ -84,14 +85,13 @@ class DerivedPreviewProcessingNode(BaseProcessingNode):
                                 ]
                               },
                               "forView": [
-                              'datahub-preview-{}'.format(resource_name)
-                            ]
+                                'datahub-preview-{}'.format(resource_name)
+                              ]
                           }
                       }),
                     # TODO pass limit as a parameter
                     ('assembler.load_preview', {}),
-                    ('assembler.load_views', {})
-                    ],
+                    ('assembler.load_views', {})],
                     True
                 )
                 yield output
