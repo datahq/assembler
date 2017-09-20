@@ -155,7 +155,7 @@ def planner(datapackage_input, processing, outputs):
         pipeline_steps.extend([
             ('assembler.sample',),
         ])
-        dependencies = ['./'+ra.resource_name
+        dependencies = [ra.resource_name
                         for ra in (derived_artifact.required_streamed_artifacts +
                                    derived_artifact.required_other_artifacts)
                         if not ra.datahub_type in ('source/tabular', 'source/non-tabular')]
@@ -165,4 +165,3 @@ def planner(datapackage_input, processing, outputs):
             'resource': derived_artifact.resource_name,
             'url': datapackage_url
         }
-

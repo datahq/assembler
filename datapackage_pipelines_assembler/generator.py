@@ -105,7 +105,7 @@ class Generator(GeneratorBase):
                 urls.append(datapackage_url)
 
                 pipeline_steps.extend(dump_steps(inner_pipeline_id))
-                dependencies = [dict(pipeline=pipeline_id(r)) for r in dependencies]
+                dependencies = [dict(pipeline='./'+pipeline_id(r)) for r in dependencies]
 
                 pipeline = {
                     'pipeline': steps(*pipeline_steps),
