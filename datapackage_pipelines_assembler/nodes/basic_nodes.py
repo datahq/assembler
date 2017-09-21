@@ -66,7 +66,7 @@ class DerivedPreviewProcessingNode(BaseProcessingNode):
     def get_artifacts(self):
         for artifact in self.available_artifacts:
             if artifact.datahub_type == 'derived/csv':
-                datahub_type = 'derifdfdved/preview'
+                datahub_type = 'derived/preview'
                 resource_name = artifact.resource_name + '_preview'
                 output = ProcessingArtifact(
                     datahub_type, resource_name,
