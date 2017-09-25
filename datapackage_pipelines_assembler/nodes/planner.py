@@ -1,12 +1,9 @@
 import os
-from typing import List  # noqa
-from typing import Tuple  # noqa
-from datapackage import Resource  # noqa
+from typing import List
+from typing import Tuple
 
 import datapackage
 from copy import deepcopy
-
-import logging
 
 from .node_collector import collect_artifacts
 from .base_processing_node import ProcessingArtifact
@@ -64,8 +61,8 @@ def planner(datapackage_input, processing, outputs):
             if not descriptor['url'].endswith(descriptor['format']):
                 descriptor['url'] += '#.{}'.format(descriptor['format'])
 
-        # print(descriptor['url'])
-        # print(descriptor['format'])
+        print(descriptor['url'])
+        print(descriptor['format'])
 
         is_geojson = (
             (descriptor.get('format') == 'geojson') or
@@ -108,7 +105,7 @@ def planner(datapackage_input, processing, outputs):
                 ri_ = deepcopy(ri)
                 if 'tabulator' in p:
                     ri_.update(p['tabulator'])
-                    ri_['name'] = p['output']
+                    ri_['name'] = p['gi']
                     updated_resource_info.append(ri_)
     resource_info = dict(
         (ri['name'], ri)
