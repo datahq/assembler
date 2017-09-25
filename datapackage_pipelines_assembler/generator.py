@@ -81,7 +81,7 @@ class Generator(GeneratorBase):
         owner = meta.get('owner')
         findability = meta.get('findability', 'published')
         update_time = meta.get('update_time')
-        schedule = source.get('schedule')
+        schedule = source.get('schedule', {})
 
         inputs = source.get('inputs', [])
         assert len(inputs) == 1, 'Only supporting one input atm'
