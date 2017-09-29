@@ -46,3 +46,16 @@ class TestIndeedProccessors(unittest.TestCase):
 
         # should have 10 rows as limit is set to 10 in params
         self.assertEqual(len(rows), 10)
+
+        spew_args, _ = mock_processor_test(processor_path, ({'limit': '20'}, datapackage,[resources]))
+
+        spew_dp = spew_args[0]
+        spew_res_iter = spew_args[1]
+
+        dp_resources = spew_dp['resources']
+
+        spew_res_iter_contents = list(spew_res_iter)
+        rows = list(list(spew_res_iter_contents)[0])
+
+        # should have 0 rows as original reource is already small
+        self.assertEqual(len(rows), 0)

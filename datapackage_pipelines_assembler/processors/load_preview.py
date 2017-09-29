@@ -4,6 +4,8 @@ parameters, datapackage, res_iter = ingest()
 
 
 def generate_preview(res):
+    if len(list(res)) < int(parameters.get('limit', 10000)):
+        return
     for i, row in enumerate(res):
         if i < int(parameters.get('limit', 10000)):
             yield row
