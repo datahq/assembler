@@ -30,7 +30,12 @@ class TestIndeedProccessors(unittest.TestCase):
             ]
         }
 
-        resources = [{'id': '%d'%i} for i in range(15)]
+        class TempList(list):
+            pass
+
+        resources = TempList([{'id': '%d'%i} for i in range(15)])
+        resources.spec = {'rowcount': 15}
+
 
         # Trigger the processor with mock `ingest` and capture what it will
         # returned to `spew`.

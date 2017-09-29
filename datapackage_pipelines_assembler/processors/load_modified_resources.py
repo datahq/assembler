@@ -28,8 +28,6 @@ def modify_datapackage(dp, parameters, stats):
         view = dp_.descriptor.get('views', [])
         views += view
 
-        if dp_.descriptor.get('not_processed'):
-            continue
         for resource_ in dp_.resources:
             resource: Resource = resource_
             descriptor = copy.deepcopy(resource.descriptor)
