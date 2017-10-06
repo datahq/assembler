@@ -62,10 +62,7 @@ class NonTabularProcessingNode(BaseProcessingNode):
                           'update': {
                               'name': resource_name,
                               'datahub': {
-                                'type': datahub_type,
-                                'derivedFrom': [
-                                    artifact.resource_name
-                                ]
+                                'type': datahub_type
                               }
                           }
                       })],
