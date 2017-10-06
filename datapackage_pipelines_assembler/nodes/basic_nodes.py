@@ -50,8 +50,7 @@ class NonTabularProcessingNode(BaseProcessingNode):
 
     def get_artifacts(self):
         for artifact in self.available_artifacts:
-            if artifact.datahub_type == 'source/tabular' \
-                or artifact.datahub_type == 'source/non-tabular':
+            if artifact.datahub_type == 'source/tabular' or artifact.datahub_type == 'source/non-tabular':
                 datahub_type = artifact.datahub_type
                 resource_name = artifact.resource_name
                 output = ProcessingArtifact(

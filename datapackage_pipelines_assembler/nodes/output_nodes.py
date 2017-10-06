@@ -21,12 +21,10 @@ class OutputToZipProcessingNode(BaseProcessingNode):
             output = ProcessingArtifact(
                 datahub_type, resource_name,
                 [], self.available_artifacts,
-                [
-                ('dump.to_zip', {
+                [('dump.to_zip', {
                     'out-file': tmp_zip,
                     'force-format': False,
-                    'handle-non-tabular': True
-                }),
+                    'handle-non-tabular': True}),
                 ('assembler.clear_resources', {}),
                 ('add_resource', {
                     'url': tmp_zip,
