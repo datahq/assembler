@@ -99,10 +99,7 @@ class Generator(GeneratorBase):
                 'out-file': '%s.zip' % meta.get('dataset', 'datahub')
             }
         }
-        zip_there = False
-        for output in outputs:
-            if output['kind'] == 'zip':
-                zip_there = True
+        zip_there = any(output['kind'] == 'zip' for output in outputs)
         if not zip_there:
             outputs.append(zip_output)
 
