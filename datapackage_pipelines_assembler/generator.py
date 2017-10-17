@@ -75,7 +75,6 @@ class Generator(GeneratorBase):
             else:
                 return '{ownerid}/{dataset}'.format(**meta)
 
-
         ownerid = meta['ownerid']
         owner = meta.get('owner')
         findability = meta.get('findability', 'published')

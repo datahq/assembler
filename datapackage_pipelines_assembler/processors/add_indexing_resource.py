@@ -6,16 +6,16 @@ from datapackage_pipelines.wrapper import ingest, spew
 
 SCHEMA = {
     'fields': [
-        {'name':'timestamp', 'type':'datetime'},
-        {'name':'event_entity', 'type':"string"},
-        {'name':'event_action', 'type':"string"},
-        {'name':'owner', 'type':'string'},
-        {'name':'ownerid', 'type':'string'},
-        {'name':'dataset', 'type':'string'},
-        {'name':'status', 'type':'string'},
-        {'name':'messsage', 'type':'string'},
-        {'name':'findability', 'type':'string'},
-        {'name':'payload', 'type': 'object', 'es:index': False}
+        {'name': 'timestamp', 'type': 'datetime'},
+        {'name': 'event_entity', 'type': "string"},
+        {'name': 'event_action', 'type': "string"},
+        {'name': 'owner', 'type': 'string'},
+        {'name': 'ownerid', 'type': 'string'},
+        {'name': 'dataset', 'type': 'string'},
+        {'name': 'status', 'type': 'string'},
+        {'name': 'messsage', 'type': 'string'},
+        {'name': 'findability', 'type': 'string'},
+        {'name': 'payload', 'type': 'object', 'es: index': False}
     ],
     'primaryKey': 'ownerid'
 }
@@ -31,9 +31,8 @@ def modify_datapackage(dp):
     return dp
 
 
-
 def dataset_resource(dp):
-    ret = dict(
+    yield dict(
         timestamp=datetime.datetime.now(),
         event_entity='flow',
         event_action='finished',
@@ -45,7 +44,6 @@ def dataset_resource(dp):
         findability=dp['datahub'].get('findability'),
         payload={'flow-id': parameters['flow-id']}
     )
-    yield ret
 
 
 if __name__ == "__main__":
