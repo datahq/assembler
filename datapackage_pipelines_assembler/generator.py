@@ -77,6 +77,7 @@ class Generator(GeneratorBase):
             else:
                 return '{ownerid}/{dataset}'.format(**meta)
 
+
         ownerid = meta['ownerid']
         owner = meta.get('owner')
         findability = meta.get('findability', 'published')
@@ -154,6 +155,9 @@ class Generator(GeneratorBase):
             ('assembler.sample',),
         ]
         final_steps.extend(dump_steps(pipeline_id(), 'latest'))
+        final_steps.append(('assembler.add_indexing_resource', {
+            'flow-id': pipeline_id()
+        }))
         final_steps.append(
             ('elasticsearch.dump.to_index',
              {
@@ -162,6 +166,12 @@ class Generator(GeneratorBase):
                          {
                              'resource-name': '__datasets',
                              'doc-type': 'dataset'
+                         }
+                     ],
+                     'events': [
+                         {
+                             'resource-name': '__events',
+                             'doc-type': 'event'
                          }
                      ]
                  }
