@@ -6,8 +6,6 @@ from datapackage_pipelines.generators import (
 )
 from .nodes.planner import planner
 
-from .processors.dump_to_s3 import create_index # noqa
-
 import logging
 log = logging.getLogger(__name__)
 

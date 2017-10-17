@@ -32,11 +32,6 @@ SCHEMA = {
 }
 
 
-def create_index(index_name):
-    storage = Storage()
-    storage.create(index_name, ('dataset', SCHEMA))
-
-
 def modify_datapackage(dp):
     dp['resources'].append({
         'name': '__datasets',
