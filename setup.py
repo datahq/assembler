@@ -30,7 +30,8 @@ TESTS_REQUIRE = [
     'pylama',
     'tox',
     'moto',
-    'boto3'
+    'boto3',
+    'google-compute-engine'
 ]
 README = read('README.md')
 VERSION = read(PACKAGE, 'VERSION')
