@@ -27,7 +27,8 @@ script:
 before_script:
   - sleep 30
   - curl localhost:9200
-  - moto_server
+  - moto_server &
+  - curl localhost:5000
 
 after_success:
   - coveralls
