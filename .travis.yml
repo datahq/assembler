@@ -22,11 +22,12 @@ install:
   - pip install coveralls
 
 script:
-  - moto_server & make test
+  - make test
 
 before_script:
   - sleep 30
   - curl localhost:9200
+  - moto_server
 
 after_success:
   - coveralls
