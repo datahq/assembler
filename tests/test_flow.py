@@ -11,7 +11,8 @@ from elasticsearch import Elasticsearch, NotFoundError
 ES_SERVER = os.environ['DPP_ELASTICSEARCH'] = 'http://localhost:9200'
 S3_SERVER = os.environ['S3_ENDPOINT_URL'] = 'http://localhost:5000/'
 os.environ['PKGSTORE_BUCKET'] = 'testing.datahub.io'
-
+os.environ['AWS_ACCESS_KEY_ID'] = 'foo'
+os.environ['AWS_SECRET_ACCESS_KEY'] = 'bar'
 
 def run_factory(dir='.'):
     os.chdir(dir)
