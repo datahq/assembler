@@ -25,9 +25,9 @@ script:
   - make test
 
 before_script:
+  - moto_server &
   - sleep 30
   - curl localhost:9200
-  - moto_server &
   - curl localhost:5000
 
 after_success:
