@@ -4,7 +4,6 @@ import os
 import json
 
 from datapackage_pipelines.generators import GeneratorBase
-from sqlalchemy import inspect
 
 import logging
 log = logging.getLogger(__name__)
