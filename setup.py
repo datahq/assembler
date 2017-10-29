@@ -23,6 +23,7 @@ INSTALL_REQUIRES = [
     'tweepy',
     'facebook-sdk',
     'google-api-python-client==1.5.3',
+    'datapackage-pipelines-elasticsearch'
 ]
 DEPENDENCY_LINKS=[
     'https://github.com/datahq/specstore/archive/master.zip'
