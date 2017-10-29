@@ -4,6 +4,7 @@ import os
 import json
 
 from datapackage_pipelines.generators import GeneratorBase
+from sqlalchemy import inspect
 
 import logging
 log = logging.getLogger(__name__)
@@ -13,6 +14,7 @@ SCHEMA_FILE = os.path.join(
     os.path.dirname(__file__), 'schemas/assembler_spec_schema.json')
 DB_ENGINE = os.environ.get('SOURCESPEC_REGISTRY_DB_ENGINE')
 
+
 class Generator(GeneratorBase):
 
     @classmethod
@@ -21,5 +23,5 @@ class Generator(GeneratorBase):
 
     @classmethod
     def generate_pipeline(cls, source):
-        pipelines = FlowRegistry(DB_ENGINE)
-        yield from pipelines.list_pipelines()
+        registry = FlowRegistry(DB_ENGINE)
+        yield from registry.list_pipelines()
