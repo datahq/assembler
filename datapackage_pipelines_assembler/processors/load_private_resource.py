@@ -1,15 +1,13 @@
 import datapackage
-from datapackage_pipelines.wrapper import ingest, spew
+from datapackage_pipelines.wrapper import ingest
 from datapackage_pipelines.lib.load_resource import ResourceLoader
-from datapackage_pipelines.utilities.resources import PROP_STREAMED_FROM
 from planner.utilities import s3_path
 
-import logging
 
 class PrivateResourceLoader(ResourceLoader):
 
     def __init__(self):
-        super(ResourceLoader, self ).__init__()
+        super(ResourceLoader, self).__init__()
         self.parameters, self.dp, self.res_iter = ingest()
 
     def process_datapackage(self, dp_):
