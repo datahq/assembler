@@ -15,13 +15,14 @@ def generate_report(datapackage_):
 
     for resource in dp.resources:
         report = validate(
-            resource.descriptor[PROP_STREAMED_FROM],
+            resource.descriptor['path'],
             preset='datapackage',
             schema=resource.descriptor,
         )
         reports.append(report)
-    f = open(report_name, 'w')
-    json.dump(reports, f)
+
+    with open(report_name, 'w') as f:
+        json.dump(reports, f)
 
 
 generate_report(datapackage)
