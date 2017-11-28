@@ -4,11 +4,10 @@ from datapackage import Package
 from goodtables import validate
 from datapackage_pipelines.wrapper import spew, ingest
 from datapackage_pipelines.utilities.resources import PROP_STREAMED_FROM
-import logging
 
 parameters, datapackage, res_iter = ingest()
-
 report_name = 'datapackage_report.json'
+
 
 def generate_report(datapackage_):
     reports = []
@@ -23,6 +22,7 @@ def generate_report(datapackage_):
         reports.append(report)
     f = open(report_name, 'w')
     json.dump(reports, f)
+
 
 generate_report(datapackage)
 
