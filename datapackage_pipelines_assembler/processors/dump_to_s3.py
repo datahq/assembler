@@ -3,7 +3,6 @@ import datetime
 import os
 
 import filemanager
-import logging
 from datapackage_pipelines.utilities.resources import PROP_STREAMING
 
 from datapackage_pipelines_aws.s3_dumper import S3Dumper
@@ -106,6 +105,7 @@ class MyS3Dumper(S3Dumper):
             os.stat(kwargs['Body'].name).st_size,
             datetime.datetime.now()
         )
+
 
 if __name__ == "__main__":
     MyS3Dumper()()
