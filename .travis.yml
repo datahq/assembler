@@ -26,7 +26,7 @@ install:
   - make install
   - pip install coveralls
   - git clone https://github.com/datahq/specstore
-  - pip install gunicorn
+  - pip install -r specstore/requirements.txt
 
 script:
   - make test
