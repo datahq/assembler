@@ -42,7 +42,7 @@ def run_factory(dir='.', config=configs):
         out = subprocess.check_output(['dpp', 'run', 'dirty'],
                                       stderr=subprocess.STDOUT
                                     )
-        print(out.decode('utf8'))
+        # print(out.decode('utf8'))
         revision = registry.get_revision(response['dataset_id'])
         registry.delete_pipelines(response['dataset_id']+'/'+str(revision['revision']))
         os.remove('.dpp.db')
