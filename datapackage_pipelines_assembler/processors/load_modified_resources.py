@@ -48,8 +48,8 @@ def modify_datapackage(dp, parameters, stats):
 
     dp['views'] = views
     dp['datahub'].setdefault('stats', {}).update(dict(
-        rowcount = row_count,
-        bytes = bytes
+        rowcount=row_count,
+        bytes=bytes
     ))
 
     return dp
