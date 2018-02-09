@@ -57,7 +57,9 @@ def run_factory(dir='.', config=configs):
 def generate_token(owner):
     ret = {
         'userid': owner,
-        'permissions': {},
+        'permissions': {
+            'max_dataset_num': 1000000,
+        },
         'service': ''
     }
     token = jwt.encode(ret, private_key, algorithm='RS256').decode('ascii')
