@@ -24,6 +24,7 @@ os.environ['FLOWMANAGER_HOOK_URL'] = 'http://localhost:4000/source/update'
 
 import filemanager
 import flowmanager.controllers
+from auth.lib import Verifyer
 from flowmanager.models import FlowRegistry
 from sqlalchemy import create_engine
 
@@ -36,13 +37,13 @@ info_successful = 'http://localhost:4000/source/datahub/%s/successful'
 info_latest = 'http://localhost:4000/source/datahub/%s/latest'
 
 registry = FlowRegistry(DB_ENGINE)
-
+verifyer = Verifyer(public_key=public_key)
 
 def run_factory(dir='.', config=configs):
     os.chdir(dir)
     flow = yaml.load(open('assembler.source-spec.yaml'))
     token = generate_token(flow['meta']['owner'])
-    response = upload(token, flow, registry, public_key, config=config)
+    response = upload(token, flow, registry, verifyer, config=config)
 
 
     try:
