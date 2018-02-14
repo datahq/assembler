@@ -48,7 +48,6 @@ def run_factory(dir='.', config=configs):
 
     try:
         out = subprocess.check_output(['dpp', 'run', 'all'], stderr=subprocess.STDOUT)
-        os.remove('.dpp.db')
     except subprocess.CalledProcessError as e:
         print(e.output.decode('utf8'))
         raise
