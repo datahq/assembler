@@ -107,7 +107,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/non-tabular']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/non_tabular'), config=config)
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(
             '{}{}/datahub/non-tabular/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -137,7 +137,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -167,7 +167,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/csv']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -198,7 +198,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/json']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -229,7 +229,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/zip']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -260,7 +260,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/report']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -293,7 +293,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/report']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/invalid_file'), config=config)
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(
                 '{}{}/datahub/invalid-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -329,7 +329,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/invalid_file'), config=config)
         # Specstore
-        time.sleep(10)
+        time.sleep(15)
         res = requests.get(info_latest % 'invalid-file')
         self.assertEqual(res.status_code, 200)
 
@@ -388,7 +388,7 @@ class TestFlow(unittest.TestCase):
         time.sleep(15)
         res = requests.get(
             '{}{}/datahub/needs-preview/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
-        time.sleep(10)
+        time.sleep(15)
         paths = dict(
             (r['name'], r['path'])
             for r in res['resources']
