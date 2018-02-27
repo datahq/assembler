@@ -518,7 +518,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/multiple_files'))
 
-        time.sleep(120)
+        time.sleep(180)
         res = requests.get(
             '{}{}/datahub/multiple-files/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -1114,7 +1114,7 @@ class TestFlow(unittest.TestCase):
         # Second flow
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/multiple_files'))
-        time.sleep(120)
+        time.sleep(180)
         res = requests.get('http://localhost:9200/datahub/_search')
         meta = res.json()
         self.assertEqual(meta['hits']['total'], 2)
