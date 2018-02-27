@@ -107,6 +107,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/non-tabular']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/non_tabular'), config=config)
+        time.sleep(10)
         res = requests.get(
             '{}{}/datahub/non-tabular/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -136,6 +137,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
+        time.sleep(10)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -165,6 +167,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/csv']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
+        time.sleep(10)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -195,6 +198,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/json']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
+        time.sleep(10)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -225,6 +229,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/zip']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
+        time.sleep(10)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -255,6 +260,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/report']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
+        time.sleep(10)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -287,6 +293,7 @@ class TestFlow(unittest.TestCase):
         config = {'allowed_types': ['source/tabular', 'derived/report']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/invalid_file'), config=config)
+        time.sleep(10)
         res = requests.get(
                 '{}{}/datahub/invalid-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -320,11 +327,9 @@ class TestFlow(unittest.TestCase):
     def test_all_pipeline_statuses_are_updated_after_fail(self):
         config = {'allowed_types': ['source/tabular', 'derived/report', 'derived/csv']}
         run_factory(os.path.join(os.path.dirname(
-        os.path.realpath(__file__)), 'inputs/invalid_file'), config=config)
-
-
+            os.path.realpath(__file__)), 'inputs/invalid_file'), config=config)
         # Specstore
-        # time.sleep(10)
+        time.sleep(10)
         res = requests.get(info_latest % 'invalid-file')
         self.assertEqual(res.status_code, 200)
 
@@ -342,6 +347,7 @@ class TestFlow(unittest.TestCase):
             'source/tabular', 'derived/csv', 'derived/json', 'derived/preview']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'), config=config)
+        time.sleep(20)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -379,9 +385,10 @@ class TestFlow(unittest.TestCase):
             'source/tabular', 'derived/csv', 'derived/preview']}
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/preview'), config=config)
+        time.sleep(15)
         res = requests.get(
             '{}{}/datahub/needs-preview/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
-
+        time.sleep(10)
         paths = dict(
             (r['name'], r['path'])
             for r in res['resources']
@@ -414,6 +421,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'))
 
+        time.sleep(30)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -457,7 +465,6 @@ class TestFlow(unittest.TestCase):
         # TODO: compare zip files
 
         # Elasticsearch
-        time.sleep(15)
         res = requests.get('http://localhost:9200/datahub/_search')
         self.assertEqual(res.status_code, 200)
 
@@ -511,6 +518,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/multiple_files'))
 
+        time.sleep(40)
         res = requests.get(
             '{}{}/datahub/multiple-files/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -574,7 +582,6 @@ class TestFlow(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
 
         # Elasticsearch
-        time.sleep(15)
         res = requests.get('http://localhost:9200/datahub/_search')
         self.assertEqual(res.status_code, 200)
 
@@ -629,7 +636,7 @@ class TestFlow(unittest.TestCase):
     def test_excel_file(self):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/excel'))
-
+        time.sleep(30)
         res = requests.get(
             '{}{}/datahub/excel/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
         paths = dict(
@@ -670,7 +677,6 @@ class TestFlow(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
 
         # Elasticsearch
-        time.sleep(15)
         res = requests.get('http://localhost:9200/datahub/_search')
         self.assertEqual(res.status_code, 200)
 
@@ -722,6 +728,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/needs_processing'))
 
+        time.sleep(30)
         res = requests.get(
             '{}{}/datahub/single-file-processed/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
         paths = dict(
@@ -763,7 +770,6 @@ class TestFlow(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
 
         # Elasticsearch
-        time.sleep(15)
         res = requests.get('http://localhost:9200/datahub/_search')
         self.assertEqual(res.status_code, 200)
 
@@ -815,6 +821,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/needs_processing_dpp'))
 
+        time.sleep(30)
         res = requests.get(
             '{}{}/datahub/single-file-processed-dpp/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
         paths = dict(
@@ -856,7 +863,6 @@ class TestFlow(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
 
         # Elasticsearch
-        time.sleep(15)
         res = requests.get('http://localhost:9200/datahub/_search')
         self.assertEqual(res.status_code, 200)
 
@@ -908,6 +914,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/private_dataset'))
 
+        time.sleep(30)
         res = requests.get(
             '{}{}/datahub/private/1/datapackage.json'.format(S3_SERVER, bucket_name))
         self.assertEqual(res.status_code, 403)
@@ -947,7 +954,6 @@ class TestFlow(unittest.TestCase):
         self.assertEqual(res.status_code, 403)
 
         # Elasticsearch
-        time.sleep(15)
         res = requests.get('http://localhost:9200/datahub/_search')
         self.assertEqual(res.status_code, 200)
 
@@ -1001,6 +1007,7 @@ class TestFlow(unittest.TestCase):
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/all_schema_types'))
 
+        time.sleep(25)
         res = requests.get(
             '{}{}/datahub/all-schema-types/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
 
@@ -1043,7 +1050,6 @@ class TestFlow(unittest.TestCase):
         # TODO: compare zip files
 
         # Elasticsearch
-        time.sleep(15)
         res = requests.get('http://localhost:9200/datahub/_search')
         self.assertEqual(res.status_code, 200)
 
@@ -1097,7 +1103,7 @@ class TestFlow(unittest.TestCase):
         # Run flow
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/single_file'))
-        time.sleep(15)
+        time.sleep(25)
         res = requests.get('http://localhost:9200/datahub/_search')
         meta = res.json()
         self.assertEqual(meta['hits']['total'], 1)
@@ -1108,7 +1114,7 @@ class TestFlow(unittest.TestCase):
         # Second flow
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/multiple_files'))
-        time.sleep(15)
+        time.sleep(40)
         res = requests.get('http://localhost:9200/datahub/_search')
         meta = res.json()
         self.assertEqual(meta['hits']['total'], 2)
@@ -1119,7 +1125,7 @@ class TestFlow(unittest.TestCase):
         # Third flows
         run_factory(os.path.join(os.path.dirname(
             os.path.realpath(__file__)), 'inputs/excel'))
-        time.sleep(15)
+        time.sleep(30)
         res = requests.get('http://localhost:9200/datahub/_search')
         meta = res.json()
         self.assertEqual(meta['hits']['total'], 3)
