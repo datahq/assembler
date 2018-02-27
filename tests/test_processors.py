@@ -99,10 +99,16 @@ class TestIndeedProccessors(unittest.TestCase):
             'format': 'json',
             'path': 'data/validation_report.json',
             'datahub': {'type': 'derived/report'},
-            'hash': '919028f248489d242fb90e11684a67a5',
             'description': 'Validation report for tabular data'
         }
         result = spew_dp['resources'][0]
+
+        # Check resource metadata has hash in it
+        self.assertTrue('hash' in result)
+
+        # Delete PROP_STREAMED_FROM as it varies (includes tempdir)
         del result[PROP_STREAMED_FROM]
-        
+        # Delete hash as it is not constant (report includes number of seconds it needed to be prepered)
+        del result['hash']
+
         self.assertDictEqual(expected, result)
