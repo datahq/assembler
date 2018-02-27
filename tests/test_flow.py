@@ -2,7 +2,6 @@ import json
 import jwt
 import os
 import requests
-import subprocess
 import time
 import unittest
 import yaml
@@ -43,15 +42,7 @@ def run_factory(dir='.', config=configs):
     os.chdir(dir)
     flow = yaml.load(open('assembler.source-spec.yaml'))
     token = generate_token(flow['meta']['owner'])
-    response = upload(token, flow, registry, verifyer, config=config)
-
-
-    try:
-        out = subprocess.check_output(['dpp', 'run', 'all'], stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as e:
-        print(e.output.decode('utf8'))
-        raise
-
+    upload(token, flow, registry, verifyer, config=config)
 
 def generate_token(owner):
     ret = {
