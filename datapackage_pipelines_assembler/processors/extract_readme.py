@@ -25,4 +25,5 @@ def exctract_readme(datapackage_):
 
     return datapackage_
 
+
 spew(exctract_readme(datapackage), res_iter)
