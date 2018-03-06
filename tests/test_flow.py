@@ -334,7 +334,6 @@ class TestFlow(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
 
         info = res.json()
-        print(json.dumps(info, indent=2))
         self.assertEqual(info['state'], 'FAILED')
         self.assertEqual(len(info['pipelines']), 4)
         self.assertEqual(info['pipelines']['datahub/invalid-file/1']['status'], 'FAILED')

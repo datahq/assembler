@@ -1,5 +1,5 @@
 https://github.com/datahq/auth/archive/master.zip
-https://github.com/datahq/planner/archive/fix/sign-streamed-resources.zip
+https://github.com/datahq/planner/archive/master.zip
 https://github.com/datahq/specstore/archive/master.zip
 https://github.com/datahq/events/archive/master.zip
 https://github.com/datahq/filemanager/archive/master.zip
