@@ -230,7 +230,6 @@ class TestFlow(unittest.TestCase):
         time.sleep(60)
         res = requests.get(
             '{}{}/datahub/single-file/1/datapackage.json'.format(S3_SERVER, bucket_name)).json()
-
         paths = dict(
             (r['name'], r['path'])
             for r in res['resources']
